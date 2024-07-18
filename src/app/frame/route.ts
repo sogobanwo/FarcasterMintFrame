@@ -38,7 +38,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
           post_url: `${process.env.BASE_URL}/redirect`,
           buttons: [{ label: "Learn How to Make This", action: "post_redirect" }],
           aspect_ratio: "1:1",
-          cid: "QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/0.png",
+          image: {url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/0.png"},
       });
       return new NextResponse(frameMetadata);
     } catch (error) {
