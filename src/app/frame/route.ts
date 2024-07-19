@@ -35,8 +35,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             const mint = await mintNft(address, 0);
             console.log(mint);
             const frameMetadata = fdk.getFrameMetadata({
-                post_url: `https://nexus-wheat-pi.vercel.app/dashboard`,
-                buttons: [{ label: "Go to Dashboard", action: "link" }],
+                buttons: [{ label: "Go to Dashboard", action: "link", target: `https://nexus-wheat-pi.vercel.app/dashboard`}],
                 aspect_ratio: "1:1",
                 image: { url: "https://scarlet-calm-porcupine-918.mypinata.cloud/ipfs/QmQ4TreCgZFdi69i5fBnieiZpRYfiREvdRiR6XXWP2KUuZ" },
             });
@@ -47,8 +46,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         }
     } else {
         const frameMetadata = fdk.getFrameMetadata({
-            post_url: `https://nexus-wheat-pi.vercel.app/dashboard`,
-            buttons: [{ label: "Go to Dashboard", action: "link" }],
+            buttons: [{ label: "Go to Dashboard", action: "link", target: `https://nexus-wheat-pi.vercel.app/dashboard`}],
             aspect_ratio: "1:1",
             image: { url: "https://scarlet-calm-porcupine-918.mypinata.cloud/ipfs/QmQif94kG157UGFpwkVV7omvJL77TzgujKvUz5cTSsSy62" },
         });
