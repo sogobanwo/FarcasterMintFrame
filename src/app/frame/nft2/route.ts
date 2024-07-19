@@ -38,7 +38,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 post_url: `https://nexus-wheat-pi.vercel.app/dashboard`,
                 buttons: [{ label: "Go to Dashboard", action: "post_redirect" }],
                 aspect_ratio: "1:1",
-                image: { url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/2.jpeg" },
+                image: { url: "https://scarlet-calm-porcupine-918.mypinata.cloud/ipfs/QmQ4TreCgZFdi69i5fBnieiZpRYfiREvdRiR6XXWP2KUuZ" },
             });
             return new NextResponse(frameMetadata);
         } catch (error) {
@@ -47,9 +47,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
         }
     } else {
         const frameMetadata = fdk.getFrameMetadata({
-            post_url: `${process.env.BASE_URL}/redirect`,
+            post_url: `https://nexus-wheat-pi.vercel.app/dashboard`,
+            buttons: [{ label: "Go to Dashboard", action: "post_redirect" }],
             aspect_ratio: "1:1",
-            image: { url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/0.png" },
+            image: { url: "https://scarlet-calm-porcupine-918.mypinata.cloud/ipfs/QmQif94kG157UGFpwkVV7omvJL77TzgujKvUz5cTSsSy62" },
         });
         return new NextResponse(frameMetadata);
     }

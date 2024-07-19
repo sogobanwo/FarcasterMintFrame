@@ -31,24 +31,26 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const balance = await balanceOf(address, 1);
     console.log(balance);
     if (typeof balance === "number" && balance !== null && balance < 1) {
-    try {
-        const mint = await mintNft(address, 1);
-        console.log(mint);
-        const frameMetadata = fdk.getFrameMetadata({
-            post_url: `https://nexus-wheat-pi.vercel.app/dashboard`, buttons: [{ label: "Go to Dashboard", action: "post_redirect" }],
-            aspect_ratio: "1:1",
-            image: { url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/1.jpeg" },
-        });
-        return new NextResponse(frameMetadata);
-    } catch (error) {
-        console.log(error);
-        return NextResponse.json({ error: error });
-    }
+        try {
+            const mint = await mintNft(address, 1);
+            console.log(mint);
+            const frameMetadata = fdk.getFrameMetadata({
+                post_url: `https://nexus-wheat-pi.vercel.app/dashboard`,
+                buttons: [{ label: "Go to Dashboard", action: "post_redirect" }],
+                aspect_ratio: "1:1",
+                image: { url: "https://scarlet-calm-porcupine-918.mypinata.cloud/ipfs/QmQ4TreCgZFdi69i5fBnieiZpRYfiREvdRiR6XXWP2KUuZ" },
+            });
+            return new NextResponse(frameMetadata);
+        } catch (error) {
+            console.log(error);
+            return NextResponse.json({ error: error });
+        }
     } else {
         const frameMetadata = fdk.getFrameMetadata({
-            post_url: `${process.env.BASE_URL}/redirect`,
+            post_url: `https://nexus-wheat-pi.vercel.app/dashboard`,
+            buttons: [{ label: "Go to Dashboard", action: "post_redirect" }],
             aspect_ratio: "1:1",
-            image: { url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/0.png" },
+            image: { url: "https://scarlet-calm-porcupine-918.mypinata.cloud/ipfs/QmQif94kG157UGFpwkVV7omvJL77TzgujKvUz5cTSsSy62" },
         });
         return new NextResponse(frameMetadata);
     }
