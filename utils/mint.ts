@@ -24,7 +24,7 @@ export async function mintNft(toAddress: string) {
       address: contractAddress,
       abi: contractAbi,
       functionName: "safeMint",
-      args: [0, toAddress, 0],
+      args: [ toAddress, 0],
     });
     const transaction = await walletClient.writeContract(request);
     return transaction;
@@ -34,18 +34,18 @@ export async function mintNft(toAddress: string) {
   }
 }
 
-export async function numberOfNFTMints(address: string) {
-  try {
-    const balanceData = await publicClient.readContract({
-      address: contractAddress,
-      abi: contractAbi,
-      functionName: "no_of_mintedNFTs",
-      args: [address as `0x`]
-    });
-    const balance: number = Number(balanceData)
-    return balance
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-}
+// export async function numberOfNFTMints(address: string) {
+//   try {
+//     const balanceData = await publicClient.readContract({
+//       address: contractAddress,
+//       abi: contractAbi,
+//       functionName: "no_of_mintedNFTs",
+//       args: [address as `0x`]
+//     });
+//     const balance: number = Number(balanceData)
+//     return balance
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// }
