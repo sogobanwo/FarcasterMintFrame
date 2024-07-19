@@ -24,7 +24,7 @@ export async function mintNft(toAddress: string) {
       address: contractAddress,
       abi: contractAbi,
       functionName: "safeMint",
-      args: [ toAddress, 0],
+      args: [ toAddress, 4],
     });
     const transaction = await walletClient.writeContract(request);
     return transaction;
