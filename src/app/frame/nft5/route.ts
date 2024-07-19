@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getConnectedAddressForUser } from "../../../utils/fc";
-import { balanceOf, mintNft } from "../../../utils/mint";
+import { getConnectedAddressForUser } from "../../../../utils/fc";
+import { balanceOf, mintNft } from "../../../../utils/mint";
 
 import { PinataFDK } from "pinata-fdk";
 const fdk = new PinataFDK({
@@ -11,8 +11,8 @@ const fdk = new PinataFDK({
 export async function GET(req: NextRequest, res: NextResponse) {
     try {
         const frameMetadata = fdk.getFrameMetadata({
-            image: { url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/0.png" },
-            post_url: `${process.env.BASE_URL}/frame`,
+            image: { url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/5.jpeg" },
+            post_url: `${process.env.BASE_URL}/frame/nft5`,
             buttons: [{ label: "Mint NFT", action: "post" }],
             aspect_ratio: "1:1",
 
@@ -28,17 +28,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const body = await req.json();
     const fid = body.untrustedData.fid;
     const address = await getConnectedAddressForUser(fid);
-    const balance = await balanceOf(address, 0);
+    const balance = await balanceOf(address, 5);
     console.log(balance);
     if (typeof balance === "number" && balance !== null && balance < 1) {
         try {
-            const mint = await mintNft(address, 0);
+            const mint = await mintNft(address, 5);
             console.log(mint);
             const frameMetadata = fdk.getFrameMetadata({
-                post_url: `${process.env.BASE_URL}/redirect`,
-                buttons: [{ label: "Learn How to Make This", action: "post_redirect" }],
+                post_url: `https://nexus-wheat-pi.vercel.app/dashboard`,
+                buttons: [{ label: "Go to Dashboard", action: "post_redirect" }],
                 aspect_ratio: "1:1",
-                image: { url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/0.png" },
+                image: { url: "https://amaranth-genuine-kangaroo-139.mypinata.cloud/ipfs/QmfJVQk2nszevbyEGJntcVAciKGEGQrBJR4gCWb78hBqi9/5.jpeg" },
             });
             return new NextResponse(frameMetadata);
         } catch (error) {

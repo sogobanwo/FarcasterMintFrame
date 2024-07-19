@@ -17,14 +17,15 @@ const walletClient = createWalletClient({
   transport: http(process.env.ALCHEMY_URL),
 });
 
-export async function mintNft(toAddress: string) {
+
+export async function mintNft(toAddress: string, tokenId: number) {
   try {
     const { request }: any = await publicClient.simulateContract({
       account,
       address: contractAddress,
       abi: contractAbi,
       functionName: "safeMint",
-      args: [ toAddress, 4],
+      args: [ toAddress, tokenId, 1],
     });
     const transaction = await walletClient.writeContract(request);
     return transaction;
@@ -34,18 +35,18 @@ export async function mintNft(toAddress: string) {
   }
 }
 
-// export async function numberOfNFTMints(address: string) {
-//   try {
-//     const balanceData = await publicClient.readContract({
-//       address: contractAddress,
-//       abi: contractAbi,
-//       functionName: "no_of_mintedNFTs",
-//       args: [address as `0x`]
-//     });
-//     const balance: number = Number(balanceData)
-//     return balance
-//   } catch (error) {
-//     console.log(error);
-//     return error;
-//   }
-// }
+export async function balanceOf(address: string, tokenId: number) {
+  try {
+    const balanceData = await publicClient.readContract({
+      address: contractAddress,
+      abi: contractAbi,
+      functionName: "balanceOf",
+      args: [address as `0x`, tokenId]
+    });
+    const balance: number = Number(balanceData)
+    return balance
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
